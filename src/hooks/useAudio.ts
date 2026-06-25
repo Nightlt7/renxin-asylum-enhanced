@@ -54,9 +54,10 @@ export function useAudio() {
     bass.volume.value = -24;
     bassSynthRef.current = bass;
 
-    // 持续低频嗡鸣
+    // 持续低频嗡鸣 — 保持静音，仅保留引用以避免报错
     const drone = new Tone.Oscillator('A1', 'sine').toDestination();
-    drone.volume.value = -32;
+    drone.volume.value = -60;
+    drone.mute = true;
     droneRef.current = drone;
 
     // 悬疑旋律循环：4 小节，每小节 4 拍，BPM 很慢
